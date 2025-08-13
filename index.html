@@ -1,1 +1,439 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrimeKeys Realty — Real Estate Agency</title>
+  <meta name="description" content="PrimeKeys Realty helps you buy, sell, and rent homes with expert agents, curated listings, and concierge service." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%230ea5e9' d='M10 60 50 25 90 60v25H60V70H40v15H10z'/%3E%3C/svg%3E" />
+  <meta property="og:title" content="PrimeKeys Realty — Real Estate Agency" />
+  <meta property="og:description" content="Discover beautifully curated properties and expert real estate services." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop" />
+  <style>
+    :root{
+      --bg: #0b1220;          /* dark base for gradients */
+      --brand: #0ea5e9;       /* sky-500 */
+      --brand-600: #0284c7;   /* sky-600 */
+      --ink: #0f172a;         /* slate-900 */
+      --muted: #475569;       /* slate-600 */
+      --card: #ffffff;
+      --card-ink: #0b1220;
+      --ring: #bae6fd;
+      --shadow: 0 10px 30px rgba(2,132,199,.18);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --card: #0b1220;
+        --card-ink: #e2e8f0;
+        --ink: #e2e8f0;
+        --muted: #94a3b8;
+        --shadow: 0 10px 30px rgba(14,165,233,.22);
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink); background:linear-gradient(180deg,#f8fafc, #f1f5f9);
+    }
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px);
+      background: color-mix(in oklch, white 80%, transparent);
+      border-bottom:1px solid color-mix(in oklch, var(--ring) 40%, transparent);
+    }
+    .container{max-width:1200px;margin:auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+    .brand svg{width:28px;height:28px}
+    .nav a{color:var(--ink);text-decoration:none;font-weight:600;margin-left:22px}
+    .nav a:hover{color:var(--brand)}
+    .nav .btn{margin-left:18px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;border:1px solid color-mix(in oklch, var(--brand) 35%, white 65%);
+      background:linear-gradient(180deg, color-mix(in oklch, var(--brand) 18%, white), white);
+      box-shadow: var(--shadow);
+      color:#0b1220;font-weight:700;text-decoration:none}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 14px 40px rgba(2,132,199,.24)}
+    .btn.secondary{background:transparent;border-color: color-mix(in oklch, var(--brand) 35%, white);color:var(--ink);box-shadow:none}
+
+    /* Mobile nav */
+    #menuToggle{display:none}
+    .hamburger{display:none}
+    @media (max-width: 860px){
+      .nav a.desktop{display:none}
+      .hamburger{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e2e8f0;border-radius:999px}
+      #menuToggle:checked ~ .mobileMenu{display:block}
+      .mobileMenu{display:none;position:absolute;left:0;right:0;top:58px;background:var(--card);border-bottom:1px solid #e2e8f0}
+      .mobileMenu a{display:block;padding:14px 22px;border-top:1px solid #f1f5f9}
+    }
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero-inner{display:grid;grid-template-columns: 1.1fr .9fr;gap:40px;align-items:center;padding:60px 0}
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#e0f2fe;color:#075985;font-weight:700;font-size:12px;letter-spacing:.6px}
+    h1{font-size: clamp(32px, 4vw, 56px); line-height:1.05;margin:16px 0 8px}
+    .lead{font-size: clamp(16px, 1.7vw, 20px); color:var(--muted);max-width:60ch}
+    .hero-media{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .floating-card{position:absolute;bottom:16px;left:16px;background: color-mix(in oklch, white 80%, transparent);backdrop-filter: blur(10px);padding:12px 14px;border-radius:12px;border:1px solid #e2e8f0;display:flex;gap:12px;align-items:center}
+
+    /* Search bar */
+    .searchbar{margin-top:24px;background:var(--card);border:1px solid #e2e8f0;border-radius:18px;padding:10px;display:flex;gap:10px;flex-wrap:wrap;box-shadow: var(--shadow)}
+    .searchbar label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+    .searchbar .field{flex:1;min-width:160px}
+    .searchbar input,.searchbar select{width:100%;padding:12px 12px;border:1px solid #e5e7eb;border-radius:12px;background:white}
+    .searchbar button{white-space:nowrap}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+    .section-head h2{margin:0;font-size: clamp(24px, 3vw, 36px)}
+    .kicker{color:var(--muted);margin:2px 0 0}
+
+    /* Cards grid */
+    .grid{display:grid;grid-template-columns: repeat(12, 1fr); gap:22px}
+    .col-4{grid-column: span 4}
+    .col-6{grid-column: span 6}
+    .col-12{grid-column: span 12}
+    @media (max-width: 960px){.col-4,.col-6{grid-column: span 6}}
+    @media (max-width: 640px){.col-4,.col-6{grid-column: span 12}}
+
+    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:18px;overflow:hidden;box-shadow: var(--shadow);display:flex;flex-direction:column}
+    .card .media{position:relative;aspect-ratio: 16/10;overflow:hidden}
+    .card img{width:100%;height:100%;object-fit:cover;display:block}
+    .pill{position:absolute;top:12px;left:12px;padding:6px 10px;font-size:12px;font-weight:800;border-radius:999px;background:color-mix(in oklch, var(--brand) 20%, white);border:1px solid color-mix(in oklch, var(--brand) 40%, white)}
+    .fav{position:absolute;top:12px;right:12px;background:white;border-radius:999px;border:1px solid #e2e8f0;padding:8px;cursor:pointer}
+    .card .body{padding:14px 16px;display:grid;gap:8px}
+    .price{font-weight:900;font-size:20px}
+    .meta{display:flex;gap:12px;color:var(--muted);font-size:14px}
+
+    /* Feature icons */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:16px}
+    .feature svg{flex:none}
+
+    /* Agents */
+    .agent{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:12px}
+    .agent img{width:60px;height:60px;border-radius:14px;object-fit:cover}
+
+    /* Testimonials */
+    .testi{position:relative}
+    .quote{background:var(--card);border:1px solid #e5e7eb;border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+
+    /* Contact */
+    form .row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media (max-width: 720px){form .row{grid-template-columns:1fr}}
+    form input, form textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px;font:inherit}
+    form textarea{min-height:120px}
+    .notice{font-size:12px;color:var(--muted)}
+
+    footer{background:#0b1220;color:#cbd5e1}
+    footer a{color:#e2e8f0}
+
+    /* Utility */
+    .sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+    .chip{display:inline-flex;align-items:center;gap:6px;background:#f1f5f9;border:1px solid #e5e7eb;padding:6px 10px;border-radius:999px;font-size:12px}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"RealEstateAgent",
+    "name":"PrimeKeys Realty",
+    "url":"https://example.com",
+    "logo":"https://example.com/logo.svg",
+    "telephone":"+1 (555) 123-4567",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"1 Toruńska",
+      "addressLocality":"Your City",
+      "addressRegion":"CA",
+      "postalCode":"94105",
+      "addressCountry":"PL"
+    },
+    "areaServed":"Your Metro Area",
+    "sameAs":["https://www.facebook.com/","https://www.instagram.com/"]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <svg aria-hidden="true" viewBox="0 0 100 100" fill="none"><path d="M10 60 50 25 90 60v25H60V70H40v15H10z" fill="currentColor"/></svg>
+        <span>PrimeKeys Realty</span>
+      </div>
+      <input id="menuToggle" type="checkbox" aria-label="Toggle menu" />
+      <div class="links">
+        <a class="desktop" href="#listings">Buy</a>
+        <a class="desktop" href="#listings">Rent</a>
+        <a class="desktop" href="#services">Services</a>
+        <a class="desktop" href="#agents">Agents</a>
+        <a class="desktop" href="#contact">Contact</a>
+        <a class="btn desktop" href="#contact">Get in touch</a>
+        <label class="hamburger" for="menuToggle" aria-controls="mobileMenu">☰ Menu</label>
+      </div>
+    </div>
+    <nav class="mobileMenu container" id="mobileMenu" aria-label="Mobile">
+      <a href="#listings">Buy</a>
+      <a href="#listings">Rent</a>
+      <a href="#services">Services</a>
+      <a href="#agents">Agents</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="tag">AWARD‑WINNING AGENCY</span>
+          <h1>Find your next home with confidence</h1>
+          <p class="lead">Browse verified listings, tour homes virtually, and close faster with our expert negotiators. Serving buyers, sellers, and renters across the metro area.</p>
+
+          <!-- SEARCH BAR -->
+          <form id="searchForm" class="searchbar" aria-label="Property search" onsubmit="event.preventDefault();applyFilters();">
+            <div class="field">
+              <label for="q">Location</label>
+              <input id="q" name="q" type="search" placeholder="City, neighborhood, ZIP" />
+            </div>
+            <div class="field">
+              <label for="min">Min Price</label>
+              <select id="min" name="min">
+                <option value="">Any</option>
+                <option value="250000">$250k</option>
+                <option value="500000">$500k</option>
+                <option value="750000">$750k</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="max">Max Price</label>
+              <select id="max" name="max">
+                <option value="">No max</option>
+                <option value="500000">$500k</option>
+                <option value="750000">$750k</option>
+                <option value="1000000">$1M</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="beds">Beds</label>
+              <select id="beds" name="beds">
+                <option value="">Any</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+            <button class="btn" type="submit" aria-label="Apply filters">Search homes</button>
+          </form>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop" alt="Modern family home with landscaped yard" />
+          <div class="floating-card">
+            <span class="chip">New this week</span>
+            <strong>28 listings</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTINGS -->
+    <section id="listings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured listings</h2>
+            <p class="kicker"><span id="resultCount">6</span> homes that match your search</p>
+          </div>
+          <div>
+            <label class="sr-only" for="sort">Sort</label>
+            <select id="sort" onchange="sortCards(this.value)" aria-label="Sort listings">
+              <option value="new">Newest</option>
+              <option value="priceAsc">Price: Low to High</option>
+              <option value="priceDesc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" id="cards">
+          <!-- Card template repeats -->
+          <article class="card col-4" data-city="San Francisco" data-beds="3" data-price="950000" data-date="2025-07-20">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2d52?q=80&w=1600&auto=format&fit=crop" alt="Open concept living room" />
+              <span class="pill">For Sale</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$950,000</div>
+              <div>123 Pinecrest Ave, San Francisco, CA</div>
+              <div class="meta"><span>3 🛏</span> <span>2 🛁</span> <span>1,850 sqft</span></div>
+            </div>
+          </article>
+
+          <article class="card col-4" data-city="San Jose" data-beds="4" data-price="1250000" data-date="2025-08-01">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c52f?q=80&w=1600&auto=format&fit=crop" alt="Modern kitchen" />
+              <span class="pill">For Sale</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$1,250,000</div>
+              <div>48 Willow Lane, San Jose, CA</div>
+              <div class="meta"><span>4 🛏</span> <span>3 🛁</span> <span>2,300 sqft</span></div>
+            </div>
+          </article>
+
+          <article class="card col-4" data-city="Oakland" data-beds="2" data-price="675000" data-date="2025-06-18">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop" alt="Craftsman exterior" />
+              <span class="pill">For Sale</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$675,000</div>
+              <div>782 Lakeview Blvd, Oakland, CA</div>
+              <div class="meta"><span>2 🛏</span> <span>1 🛁</span> <span>1,200 sqft</span></div>
+            </div>
+          </article>
+
+          <article class="card col-4" data-city="Berkeley" data-beds="3" data-price="820000" data-date="2025-05-22">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format&fit=crop" alt="Charming backyard" />
+              <span class="pill">For Sale</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$820,000</div>
+              <div>22 Elm Street, Berkeley, CA</div>
+              <div class="meta"><span>3 🛏</span> <span>2 🛁</span> <span>1,650 sqft</span></div>
+            </div>
+          </article>
+
+          <article class="card col-4" data-city="Palo Alto" data-beds="5" data-price="2450000" data-date="2025-08-05">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1600&auto=format&fit=crop" alt="Luxury exterior night view" />
+              <span class="pill">For Sale</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$2,450,000</div>
+              <div>9 Meadowbrook Ct, Palo Alto, CA</div>
+              <div class="meta"><span>5 🛏</span> <span>4 🛁</span> <span>3,400 sqft</span></div>
+            </div>
+          </article>
+
+          <article class="card col-4" data-city="San Mateo" data-beds="1" data-price="420000" data-date="2025-07-02">
+            <div class="media">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1600&auto=format&fit=crop" alt="Cozy studio interior" />
+              <span class="pill">For Rent</span>
+              <button class="fav" aria-label="Save listing">❤</button>
+            </div>
+            <div class="body">
+              <div class="price">$2,100/mo</div>
+              <div>569 Laurel St, San Mateo, CA</div>
+              <div class="meta"><span>1 🛏</span> <span>1 🛁</span> <span>650 sqft</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="services-title">Full‑service, start to sold</h2>
+            <p class="kicker">From pricing strategy to closing coordination.</p>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l2-2 4 4 8-8 4 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/></svg>
+            <div><strong>Seller representation</strong><p class="kicker">Staging, photography, and marketing that stands out.</p></div>
+          </div>
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15V6"/><path d="M6 15l8.5-8.5a2.121 2.121 0 0 1 3 3L9 18H6v-3z"/></svg>
+            <div><strong>Buyer advocacy</strong><p class="kicker">On‑call tours, market insights, and sharp negotiation.</p></div>
+          </div>
+          <div class="feature">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div><strong>Mortgage guidance</strong><p class="kicker">Trusted lenders and competitive pre‑approvals.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENTS -->
+    <section id="agents">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Meet our agents</h2>
+            <p class="kicker">Local experts with a client‑first mindset.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="agent col-6">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=400&auto=format&fit=crop" alt="Agent Ava Thompson" />
+            <div>
+              <strong>Ava Thompson</strong>
+              <p class="kicker">Broker • 10 yrs experience</p>
+              <p class="kicker"><a href="mailto:ava@primekeys.com">ava@primekeys.com</a> • (555) 111‑2233</p>
+            </div>
+          </div>
+          <div class="agent col-6">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Agent Mia Patel" />
+            <div>
+              <strong>Mia Patel</strong>
+              <p class="kicker">Senior Agent • 8 yrs experience</p>
+              <p class="kicker"><a href="mailto:mia@primekeys.com">mia@primekeys.com</a> • (555) 222‑3344</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section aria-labelledby="testimonials-title" class="testi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="testimonials-title">Clients love us</h2>
+            <p class="kicker">5‑star average across 500+ reviews</p>
+          </div>
+        </div>
+        <div id="quotes" class="grid">
+          <figure class="quote col-4"><blockquote>“PrimeKeys sold our home in 7 days for 12% over asking. Flawless experience.”</blockquote><figcaption class="kicker">— Daniel & Priya</figcaption></figure>
+          <figure class="quote col-4"><blockquote>“Our agent toured homes on our schedule and secured credits we didn’t expect.”</blockquote><figcaption class="kicker">— Alex R.</figcaption></figure>
+          <figure class="quote col-4"><blockquote>“Transparent, responsive, and truly knowledgeable about the local market.”</blockquote><figcaption class="kicker">— Nina G.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="contact-title">Let’s talk</h2>
+            <p class="kicker">Tell us what you’re looking for and we’ll reach out today.</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-6">
+            <form id="contactForm" onsubmit="handleContact(event)">
+              <div class="row">
+                <div>
+                  <label for="name">Full name</label>
+                  <input id="name" name="name" required placeholder="Your name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                </div>
+              </div>
+              <div clas
