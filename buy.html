@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Properties</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Real Estate Agency</h1>
+    <nav>
+      <a href="index.html" data-key="nav">Home</a>
+      <a href="buy.html" data-key="nav">Buy</a>
+      <a href="rent.html" data-key="nav">Rent</a>
+      <a href="services.html" data-key="nav">Services</a>
+      <a href="agents.html" data-key="nav">Agents</a>
+      <a href="contact.html" data-key="nav">Contact</a>
+    </nav>
+    <div class="language-toggle">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="pl">PL</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Buy Properties</h2>
+
+    <div class="search-bar">
+      <i>🔍</i>
+      <input type="text" id="buy-search" placeholder="Search offers...">
+    </div>
+
+    <div class="listings" id="buy-listings">
+      <!-- Offers loaded via script.js -->
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Real Estate Agency
+  </footer>
+</body>
+</html>
