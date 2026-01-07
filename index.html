@@ -1,36 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real Estate Agency</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inżynier Systemów IT | Administrator Systemów</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #020617, #1e293b);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #38bdf8;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li::before {
+            content: "✔ ";
+            color: #38bdf8;
+        }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .card {
+            background-color: #020617;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+        }
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Real Estate Agency</h1>
-    <nav>
-      <a href="index.html" data-key="nav">Home</a>
-      <a href="buy.html" data-key="nav">Buy</a>
-      <a href="rent.html" data-key="nav">Rent</a>
-      <a href="services.html" data-key="nav">Services</a>
-      <a href="agents.html" data-key="nav">Agents</a>
-      <a href="contact.html" data-key="nav">Contact</a>
-    </nav>
-    <div class="language-toggle">
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="pl">PL</button>
+
+<header>
+    <h1>Inżynier Systemów IT</h1>
+    <p>Administrator Systemów | Linux | Windows | Cloud | Cyberbezpieczeństwo</p>
+</header>
+
+<section>
+    <h2>O mnie</h2>
+    <p>
+        Jestem inżynierem systemów IT oraz administratorem systemów z doświadczeniem
+        w projektowaniu, wdrażaniu i utrzymaniu infrastruktury IT.
+        Specjalizuję się w systemach Linux i Windows, automatyzacji, monitoringu
+        oraz bezpieczeństwie.
+    </p>
+</section>
+
+<section>
+    <h2>Zakres kompetencji</h2>
+    <div class="skills">
+        <div class="card">
+            <h3>Systemy</h3>
+            <ul>
+                <li>Linux (Debian, Ubuntu, RHEL)</li>
+                <li>Windows Server</li>
+                <li>Active Directory</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Sieci</h3>
+            <ul>
+                <li>TCP/IP, VLAN, VPN</li>
+                <li>Firewall (pfSense, FortiGate)</li>
+                <li>Monitoring (Zabbix, Prometheus)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Cloud & DevOps</h3>
+            <ul>
+                <li>AWS / Azure</li>
+                <li>Docker, Kubernetes</li>
+                <li>CI/CD</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Bezpieczeństwo</h3>
+            <ul>
+                <li>Hardening systemów</li>
+                <li>Backup & Disaster Recovery</li>
+                <li>Audyt bezpieczeństwa</li>
+            </ul>
+        </div>
     </div>
-  </header>
+</section>
 
-  <div class="container">
-    <h2>Welcome to our Real Estate Agency</h2>
-    <p>We offer the best properties to buy and rent. Browse our listings and find your dream home today.</p>
-  </div>
+<section>
+    <h2>Doświadczenie</h2>
+    <ul>
+        <li>Administracja środowiskami produkcyjnymi 24/7</li>
+        <li>Automatyzacja zadań (Bash, PowerShell)</li>
+        <li>Migracje do chmury</li>
+        <li>Projektowanie infrastruktury IT</li>
+    </ul>
+</section>
 
-  <footer>
-    &copy; 2025 Real Estate Agency
-  </footer>
+<section>
+    <h2>Kontakt</h2>
+    <p>
+        📧 Email: <a href="mailto:twoj@email.pl">twoj@email.pl</a><br>
+        💼 GitHub: <a href="https://github.com/twoj-login" target="_blank">github.com/twoj-login</a><br>
+        🔗 LinkedIn: <a href="#" target="_blank">linkedin.com/in/twojprofil</a>
+    </p>
+</section>
+
+<footer>
+    © 2026 Inżynier Systemów IT • GitHub Pages
+</footer>
+
 </body>
 </html>
+
